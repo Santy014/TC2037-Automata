@@ -20,22 +20,44 @@ word_ampa :-
 % INVALID WORDS TESTS (You get a false response)
 
 % \+ represents negation, in this case it is used to verify that invalid inputs are correctly rejected by the automaton.
-word_invalid1 :-
-    \+ go_over_automaton([a,m,a,n]).
+% amandi — incomplete word
+word_invalid1 :- 
+    \+ go_over_automaton([a,m,a,n,d,i]).
 
-word_invalid2 :-
+% amarthh — extra character at the end
+word_invalid2 :- 
     \+ go_over_automaton([a,m,a,r,t,h,h]).
 
-word_invalid3 :-
+% ambaron — missing final character
+word_invalid3 :- 
     \+ go_over_automaton([a,m,b,a,r,o,n]).
 
-word_invalid4 :-
+% amo — incomplete prefix
+word_invalid4 :- 
     \+ go_over_automaton([a,m,o]).
 
-word_invalid5 :-
+% amp — missing final character
+word_invalid5 :- 
     \+ go_over_automaton([a,m,p]).
 
-word_invalid6 :-
+% a — input too short
+word_invalid6 :- 
+    \+ go_over_automaton([a]).
+
+% am — shared prefix only
+word_invalid7 :- 
+    \+ go_over_automaton([a,m]).
+
+% amaa — invalid sequence
+word_invalid8 :- 
+    \+ go_over_automaton([a,m,a,a]).
+
+% amoo — invalid repetition
+word_invalid9 :- 
+    \+ go_over_automaton([a,m,o,o]).
+
+% [ ] — empty string
+word_invalid10 :- 
     \+ go_over_automaton([]).
 
 % GROUP TESTS
@@ -58,5 +80,9 @@ false_testCase :-
     word_invalid4,
     word_invalid5,
     word_invalid6,
+    word_invalid7,
+    word_invalid8,
+    word_invalid9,
+    word_invalid10,
     write('All invalid tests passed.'), nl,
     !.
