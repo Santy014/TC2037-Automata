@@ -7,7 +7,7 @@ According to Robert Sebesta, lexical analysis is the initial phase of a language
 <br> <br>
 A lexical analyzer functions as a pattern matcher that reads an input string and groups characters into meaningful units called lexemes. These lexemes correspond to fundamental elements of a language, such as identifiers, reserved words, operators, numeric values, and punctuation symbols.
 <br> <br>
-Although this project does not implement a full lexical analyzer, it follows a similar principle by recognizing specific patterns within input strings. Therefore, this project focuses on the design and implementation of a deterministic finite automaton (DFA) capable of validating whether a given sequence of characters belongs to a predefined set of Elvish words from J.R. R. Tolkien famos book series "The Lord of The Rings".
+Although this project does not implement a full lexical analyzer, it follows a similar principle by recognizing specific patterns within input strings. Therefore, this project focuses on the design and implementation of a deterministic finite automaton (DFA) capable of validating whether a given sequence of characters belongs to a predefined set of Elvish words from J.R. R. Tolkien famous book series "The Lord of The Rings".
 
 <h3> Regular Expression</h3>
 Regular expressions are formal constructs used to specify patterns in strings, typically relying on operators such as union, concatenation, and iteration. Formally, a regular expression operates over a set of input symbols to define a language, which is a set of strings that match a particular pattern.
@@ -29,7 +29,7 @@ The language defined by the DFA is restricted to these words. Since the automato
 <br> <br>
 The following diagram represents the structure of the deterministic finite automaton (DFA), including its states and transitions:
 <br> <br>
-<img width="1357" height="608" alt="DFA" src="https://github.com/user-attachments/assets/61a9d2f6-6352-445d-bd4c-342eb3f5c3a3" />
+<img width="1357" height="608" alt="DFA" src="https://raw.githubusercontent.com/Santy014/TC2037-Automata/refs/heads/main/DFA.png" />
 
 The transitions represented on the DFA are the following: 
 
@@ -99,23 +99,6 @@ automaton_check([Symbol|Rest], State) :-
     move(State, Symbol, NextState),
     automaton_check(Rest, NextState).
 ```
-<h2> Tests </h2>
-Valid inputs:
-
-```prolog
-go_over_automaton([a,m,a,n,d,i,l]).
-go_over_automaton([a,m,a,r,t,h]).
-go_over_automaton([a,m,b,a,r,o,n,a]).
-go_over_automaton([a,m,o,n]).
-go_over_automaton([a,m,p,a]).
-```
-
-Invalid inputs:
-
-```prolog
-go_over_automaton([a,m,a,n]).
-go_over_automaton([a,m,o,r,t,h]).
-```
 <h2>Tests</h2>
 
 <p>
@@ -148,7 +131,7 @@ To validate the correctness of the deterministic finite automaton (DFA), a set o
   <li><b>am</b> — shared prefix only</li>
   <li><b>amaa</b> — invalid sequence</li>
   <li><b>amoo</b> — invalid repetition</li>
-  <li><b>[  ]</b> — empty input</li>
+  <li><b>[  ]</b> — empty string</li>
 </ul>
 
 <h2> Analysis </h2>
