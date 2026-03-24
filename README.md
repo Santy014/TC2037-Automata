@@ -1,4 +1,4 @@
-<h1> Evidence 1 - Lexical Analysis </h1>
+<h1> Evidence 1 - Implementation of Lexical Analysis </h1>
 Santiago Martin del Campo Soler - A01713396 
 Date: March - 24 - 2026
 
@@ -7,7 +7,7 @@ According to Robert Sebesta, lexical analysis is the initial phase of a language
 <br> <br>
 A lexical analyzer functions as a pattern matcher that reads an input string and groups characters into meaningful units called lexemes. These lexemes correspond to fundamental elements of a language, such as identifiers, reserved words, operators, numeric values, and punctuation symbols.
 <br> <br>
-Although this project does not implement a full lexical analyzer, it follows a similar principle by recognizing specific patterns within input strings. Therefore, this project focuses on the design and implementation of a deterministic finite automaton (DFA) capable of validating whether a given sequence of characters belongs to a predefined set of Elvish words from J.R. R. Tolkien famous book series "The Lord of The Rings".
+Although this project does not implement a full lexical analyzer, it follows a similar principle by recognizing specific patterns within input strings. Therefore, this project focuses on the design and implementation of a deterministic finite automaton (DFA) capable of validating whether a given sequence of characters belongs to a predefined set of Elvish words taken from J.R.R. Tolkien's "The Lord of the Rings", specifically from the Sindarin and Quenya languages.
 <br> <br>
 The following set of words is recognized by the DFA:
 <br><br>
@@ -99,13 +99,13 @@ automaton_check([], State) :-
 The recursive rule processes the input list one symbol at a time, transitioning between states according to the defined rules:
 ```prolog
 automaton_check([Symbol|Rest], State) :-
-    move(State, Symbol, NextState),
+    move(State, NextState, Symbol),
     automaton_check(Rest, NextState).
 ```
 <h2>Tests</h2>
 
 <p>
-To validate the correctness of the deterministic finite automaton (DFA), a set of test cases was designed to evaluate both accepted and rejected inputs. These tests ensure that the automaton correctly recognizes valid strings and rejects invalid ones.
+To validate the correctness of the deterministic finite automaton (DFA), a set of test cases was designed to evaluate both accepted and rejected inputs. Both accepted and rejected cases were tested to verify the automaton's behavior.
 </p>
 
 <h3>Accepted Test Cases</h3>
@@ -149,8 +149,8 @@ Each recursive call processes one symbol from the input list, creating a call st
 Therefore, the memory usage increases linearly with the input size.
 <h2> References </h2>
 
-Functional design : principles, patterns, and practices / Robert C. Martin
-          ([First edition]). (2023). Addison-Wesley. 
+Blondin, M. (2023). Automata theory : an algorithmic approach / Javier Esparza
+          and Michael Blondin. The MIT Press. 
 <br> <br>
 John E. Hopcroft, Rajeev Motwani, and Jeffrey D. Ullman. 2001. Introduction to automata theory, languages, and computation, 2nd edition. SIGACT News 32, 1 (March 2001), 60–65. https://doi.org/10.1145/568438.568455
 
