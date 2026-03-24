@@ -8,12 +8,9 @@ According to Robert Sebesta, lexical analysis is the initial phase of a language
 A lexical analyzer functions as a pattern matcher that reads an input string and groups characters into meaningful units called lexemes. These lexemes correspond to fundamental elements of a language, such as identifiers, reserved words, operators, numeric values, and punctuation symbols.
 <br> <br>
 Although this project does not implement a full lexical analyzer, it follows a similar principle by recognizing specific patterns within input strings. Therefore, this project focuses on the design and implementation of a deterministic finite automaton (DFA) capable of validating whether a given sequence of characters belongs to a predefined set of Elvish words from J.R. R. Tolkien famous book series "The Lord of The Rings".
-
-<h3> Regular Expression</h3>
-Regular expressions are formal constructs used to specify patterns in strings, typically relying on operators such as union, concatenation, and iteration. Formally, a regular expression operates over a set of input symbols to define a language, which is a set of strings that match a particular pattern.
 <br> <br>
 The following set of words is recognized by the DFA:
-<br> <br>
+<br><br>
 <ul>
     <li><b> Amandil </b>- Sindarin word for 'Priest'.</li>
     <li><b> Amarth </b>- Sindarin word for 'Doom'.</li>
@@ -21,11 +18,21 @@ The following set of words is recognized by the DFA:
     <li><b> Amon </b>- Sindarin word meaning 'Mountain' or 'Hill'.</li>
     <li><b> Ampa </b>- Quenya word for 'Hook'.</li>
 </ul>
-<h2> Model</h2>
-The language defined by the DFA is restricted to these words. Since the automaton is designed to recognize a finite set of strings, the alphabet can be defined as:
-<br> <br>
+
+The language is restricted to the set of words defined above. Since the automaton is designed to recognize a finite set of strings, the alphabet (Σ) can be defined as follows:
 <p align="center"><i> <b>Σ </b> = {a , m , n , d , i , l , r , t , h , b , o , p }</i></p>
 
+<h3> Regular Expression</h3>
+Regular expressions are formal constructs used to specify patterns in strings, typically relying on operators such as union, concatenation, and iteration. Formally, a regular expression operates over a set of input symbols to define a language, which is a set of strings that match a particular pattern.
+<br><br>
+The language defined above can be represented by the following regular expression:
+<br><br>
+
+```regexp
+^am(andil|arth|barona|on|pa)$
+```
+
+<h2> Model</h2>
 <br> <br>
 The following diagram represents the structure of the deterministic finite automaton (DFA), including its states and transitions:
 <br> <br>
@@ -62,10 +69,6 @@ From state q2, the automaton branches into multiple paths depending on the next 
 
 Each valid word leads to a unique accepting state. If the input string reaches one of these states after processing all symbols, it is accepted; otherwise, it is rejected.
 
-The language recognized by the DFA can be represented by the following regular expression:
-```regex
-am(andil|arth|barona|on|pa)
-```
 
 <h2> Implementation</h2>
 The automaton is represented as a knowledge base in Prolog to support the lexical analysis process. Each transition of the DFA is encoded as a logical rule that specifies the current state, the input symbol, and the corresponding next state. This representation allows the automaton to be evaluated through recursive predicates, as shown below:
