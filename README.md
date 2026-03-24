@@ -33,7 +33,6 @@ The language defined above can be represented by the following regular expressio
 ```
 
 <h2> Model</h2>
-<br> <br>
 The following diagram represents the structure of the deterministic finite automaton (DFA), including its states and transitions:
 <br> <br>
 <img width="1357" height="608" alt="DFA" src="https://raw.githubusercontent.com/Santy014/TC2037-Automata/refs/heads/main/DFA.png" />
