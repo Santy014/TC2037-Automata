@@ -3,10 +3,11 @@ Santiago Martin del Campo Soler - A01713396
 Date: March - 24 - 2026
 
 <h2> Description </h2>
-According to Robert Sebesta, lexical analysis is the initial phase of a language processing system, acting as the front end of the syntax analyzer. It operates at the lowest level of a program's structure by analyzing sequences of characters.
+According to Sebesta (2023), lexical analysis is the initial phase of a language processing system, acting as the front end of the syntax analyzer. It operates at the lowest level of a program's structure by analyzing sequences of characters.
 <br> <br>
 A lexical analyzer functions as a pattern matcher that reads an input string and groups characters into meaningful units called lexemes. These lexemes correspond to fundamental elements of a language, such as identifiers, reserved words, operators, numeric values, and punctuation symbols.
-<br> <br>
+
+<h2> Deterministic Finite Automaton (DFA)</h2>
 Although this project does not implement a full lexical analyzer, it follows a similar principle by recognizing specific patterns within input strings. Therefore, this project focuses on the design and implementation of a deterministic finite automaton (DFA) capable of validating whether a given sequence of characters belongs to a predefined set of Elvish words taken from J.R.R. Tolkien's "The Lord of the Rings", specifically from the Sindarin and Quenya languages.
 <br> <br>
 The following set of words is recognized by the DFA:
@@ -23,7 +24,8 @@ The language is restricted to the set of words defined above. Since the automato
 <p align="center"><i> <b>Σ </b> = {a , m , n , d , i , l , r , t , h , b , o , p }</i></p>
 
 <h3> Regular Expression</h3>
-Regular expressions are formal constructs used to specify patterns in strings, typically relying on operators such as union, concatenation, and iteration. Formally, a regular expression operates over a set of input symbols to define a language, which is a set of strings that match a particular pattern.
+Regular expressions are formal constructs used to define sets of strings over an alphabet.They are commonly used to describe regular languages through operations such as union,
+concatenation, and repetition (Hopcroft, Motwani, & Ullman, 2001).
 <br><br>
 The language defined above can be represented by the following regular expression:
 <br><br>
@@ -33,6 +35,7 @@ The language defined above can be represented by the following regular expressio
 ```
 
 <h2> Model</h2>
+A deterministic finite automaton processes an input string one symbol at a time and accepts it only if the final state belongs to the set of accepting states (Esparza & Blondin, 2023).
 The following diagram represents the structure of the deterministic finite automaton (DFA), including its states and transitions:
 <br> <br>
 <img width="1357" height="608" alt="DFA" src="https://raw.githubusercontent.com/Santy014/TC2037-Automata/refs/heads/main/DFA.png" />
@@ -67,7 +70,6 @@ The automaton begins at the initial state q0 and transitions to q1 upon reading 
 From state q2, the automaton branches into multiple paths depending on the next input symbol. Each branch corresponds to a different word, allowing the DFA to efficiently recognize multiple patterns.
 
 Each valid word leads to a unique accepting state. If the input string reaches one of these states after processing all symbols, it is accepted; otherwise, it is rejected.
-
 
 <h2> Implementation</h2>
 The automaton is represented as a knowledge base in Prolog to support the lexical analysis process. Each transition of the DFA is encoded as a logical rule that specifies the current state, the input symbol, and the corresponding next state. This representation allows the automaton to be evaluated through recursive predicates, as shown below:
@@ -136,6 +138,19 @@ To validate the correctness of the deterministic finite automaton (DFA), a set o
   <li><b>[  ]</b> — empty string</li>
 </ul>
 
+<h2> Comparison Between the DFA and the Regular Expression </h2>
+<p>
+Both the DFA and the regular expression represent the same language. The regular expression provides a compact mathematical description of the valid strings, while the DFA represents the language through states and transitions.
+</p>
+
+<p>
+The regular expression groups all valid suffixes after the common prefix <code>am</code>, whereas the DFA recognizes the same words by following different paths from a shared set of initial states.
+</p>
+
+<p>
+Although their representations differ, both approaches are equivalent because they recognize exactly the same set of words. The regular expression is more concise, while the DFA provides a clearer visualization of the recognition process.
+</p>
+
 <h2> Analysis </h2>
 <h3> Time Complexity </h3>
 The time complexity of the deterministic finite automaton (DFA) is O(n), where n is the length of the input string. 
@@ -148,10 +163,10 @@ Each recursive call processes one symbol from the input list, creating a call st
 Therefore, the memory usage increases linearly with the input size.
 <h2> References </h2>
 
-Blondin, M. (2023). Automata theory : an algorithmic approach / Javier Esparza
-          and Michael Blondin. The MIT Press. 
+Esparza, J., & Blondin, M. (2023). Automata theory: An algorithmic approach. MIT Press.
 <br> <br>
-John E. Hopcroft, Rajeev Motwani, and Jeffrey D. Ullman. 2001. Introduction to automata theory, languages, and computation, 2nd edition. SIGACT News 32, 1 (March 2001), 60–65. https://doi.org/10.1145/568438.568455
+Hopcroft, J. E., Motwani, R., & Ullman, J. D. (2001). 
+Introduction to automata theory, languages, and computation (2nd ed.). Addison-Wesley.
 
 Concepts of programming languages / Robert W. Sebesta (Twelfth edition, Global
           edition). (2023). Pearson. 
